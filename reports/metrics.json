@@ -1,0 +1,168 @@
+{
+  "n_clientes": 10000,
+  "abandonos": 2037,
+  "tasa_abandono": 0.2037,
+  "ic95": [
+    0.1959206090386846,
+    0.2117069567556398
+  ],
+  "minimo_clientes_por_segmento": 30,
+  "segmentos": [
+    {
+      "segmento": "France",
+      "n": 5014,
+      "abandonos": 810,
+      "tasa": 0.16154766653370561,
+      "ic95_inferior": 0.15162021854004948,
+      "ic95_superior": 0.17199334470993438,
+      "variable": "country"
+    },
+    {
+      "segmento": "Germany",
+      "n": 2509,
+      "abandonos": 814,
+      "tasa": 0.32443204463929853,
+      "ic95_inferior": 0.3063934756342735,
+      "ic95_superior": 0.3430074257197952,
+      "variable": "country"
+    },
+    {
+      "segmento": "Spain",
+      "n": 2477,
+      "abandonos": 413,
+      "tasa": 0.1667339523617279,
+      "ic95_inferior": 0.15257329533972516,
+      "ic95_superior": 0.18192673884222335,
+      "variable": "country"
+    },
+    {
+      "segmento": "Female",
+      "n": 4543,
+      "abandonos": 1139,
+      "tasa": 0.2507153863086066,
+      "ic95_inferior": 0.23832585465809933,
+      "ic95_superior": 0.2635261561970842,
+      "variable": "gender"
+    },
+    {
+      "segmento": "Male",
+      "n": 5457,
+      "abandonos": 898,
+      "tasa": 0.16455928165658787,
+      "ic95_inferior": 0.1549580855379608,
+      "ic95_superior": 0.17463243032684655,
+      "variable": "gender"
+    },
+    {
+      "segmento": "18–29",
+      "n": 1641,
+      "abandonos": 124,
+      "tasa": 0.07556368068251067,
+      "ic95_inferior": 0.0637436743262904,
+      "ic95_superior": 0.08936626647287226,
+      "variable": "grupo_edad"
+    },
+    {
+      "segmento": "30–39",
+      "n": 4346,
+      "abandonos": 473,
+      "tasa": 0.10883571099861943,
+      "ic95_inferior": 0.09991956564763727,
+      "ic95_superior": 0.11844277655811111,
+      "variable": "grupo_edad"
+    },
+    {
+      "segmento": "40–49",
+      "n": 2618,
+      "abandonos": 806,
+      "tasa": 0.30786860198624905,
+      "ic95_inferior": 0.2904781498938894,
+      "ic95_superior": 0.3258220873134231,
+      "variable": "grupo_edad"
+    },
+    {
+      "segmento": "50–59",
+      "n": 869,
+      "abandonos": 487,
+      "tasa": 0.5604142692750288,
+      "ic95_inferior": 0.5272193435821113,
+      "ic95_superior": 0.5930773975448012,
+      "variable": "grupo_edad"
+    },
+    {
+      "segmento": "60+",
+      "n": 526,
+      "abandonos": 147,
+      "tasa": 0.279467680608365,
+      "ic95_inferior": 0.24282333105491713,
+      "ic95_superior": 0.3193099555726335,
+      "variable": "grupo_edad"
+    },
+    {
+      "segmento": "0",
+      "n": 4849,
+      "abandonos": 1302,
+      "tasa": 0.26850897092183956,
+      "ic95_inferior": 0.25622158158643066,
+      "ic95_superior": 0.28116286549710906,
+      "variable": "active_member"
+    },
+    {
+      "segmento": "1",
+      "n": 5151,
+      "abandonos": 735,
+      "tasa": 0.14269073966220153,
+      "ic95_inferior": 0.13340525056179886,
+      "ic95_superior": 0.15250879187938887,
+      "variable": "active_member"
+    },
+    {
+      "segmento": "1",
+      "n": 5084,
+      "abandonos": 1409,
+      "tasa": 0.27714398111723054,
+      "ic95_inferior": 0.26501215228344965,
+      "ic95_superior": 0.2896123470327241,
+      "variable": "products_number"
+    },
+    {
+      "segmento": "2",
+      "n": 4590,
+      "abandonos": 348,
+      "tasa": 0.07581699346405228,
+      "ic95_inferior": 0.06850876389711455,
+      "ic95_superior": 0.08383466910240372,
+      "variable": "products_number"
+    },
+    {
+      "segmento": "3",
+      "n": 266,
+      "abandonos": 220,
+      "tasa": 0.8270676691729323,
+      "ic95_inferior": 0.7770474932595389,
+      "ic95_superior": 0.8677752471926373,
+      "variable": "products_number"
+    },
+    {
+      "segmento": "4",
+      "n": 60,
+      "abandonos": 60,
+      "tasa": 1.0,
+      "ic95_inferior": 0.9398260695220669,
+      "ic95_superior": 1.0,
+      "variable": "products_number"
+    }
+  ],
+  "fuente": {
+    "archivo": "Bank Customer Churn Prediction.csv",
+    "sha256": "90f6625c31bdfcb0cde3b94c4f3004e43795e382921d0a5be67c4bd490b38818",
+    "python": "3.11.9",
+    "paquetes": {
+      "pandas": "3.0.6",
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.2",
+      "scikit-learn": "1.9.1"
+    }
+  },
+  "filas_individuales_exportadas": 0
+}
