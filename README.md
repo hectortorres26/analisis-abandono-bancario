@@ -1,50 +1,93 @@
-# Análisis exploratorio del abandono bancario
+# Abandono bancario: diagnóstico por segmentos
 
-Proyecto de **Hector Americo Torres Huamani** · Python y análisis de datos.
+**Autor:** Hector Americo Torres Huamani · [Repositorio](https://github.com/hectortorres26/analisis-abandono-bancario) · [Cuaderno ejecutado](analisis_bancario.ipynb)
 
-[Ver cuaderno](analisis_bancario.ipynb) · [Abrir original en Colab](https://colab.research.google.com/drive/1dDmVJvDxUcYsjv2zlkreuUqyE-fgIPHM) · [Portafolio](https://www.datascienceportfol.io/hectortorres26/projects/0)
+Identificar segmentos con mayor proporción de abandono para orientar hipótesis de retención. El análisis describe asociaciones en una muestra educativa de clientes; no estima el efecto causal de una campaña ni construye un sistema de decisiones individuales.
 
-## Objetivo y contenido
+![Resultados del análisis](reports/segmentos.png)
 
-Estudiar las características de clientes de un banco y explorar su relación con el abandono (`churn`). El cuaderno describe un conjunto de 10 000 registros y 12 variables.
+## Resultados verificados
 
-### Trabajo incluido
+| Indicador | Resultado |
+|---|---:|
+| Clientes analizados | 10.000 |
+| Abandonos observados | 2.037 |
+| Tasa global | 20,37 % |
+| Intervalo de Wilson del 95 % | 19,59–21,17 % |
+| Abandono en Alemania | 32,44 % (n = 2.509) |
+| Abandono en Francia | 16,15 % (n = 5.014) |
+| Abandono en España | 16,67 % (n = 2.477) |
 
-Lectura de datos, revisión de nulos, estadística descriptiva y visualizaciones de variables demográficas y financieras. Es un análisis exploratorio, no un modelo predictivo entrenado.
+Alemania presenta una tasa de abandono mayor que Francia y España en esta muestra. La diferencia justifica investigar servicio, composición de clientes y oferta comercial antes de proponer acciones. Los grupos con tres o cuatro productos tienen tasas elevadas, pero tamaños mucho menores: 266 y 60 clientes. El grupo de cuatro productos tiene un 100 % observado, que no implica una probabilidad poblacional conocida del 100 %.
 
-### Datos
+Las cifras proceden de [reports/metrics.json](reports/metrics.json). El cuaderno regenera tablas y figuras desde los datos; no introduce métricas manualmente en el código.
 
-Archivo esperado: `Bank Customer Churn Prediction.csv`.
-Fuente indicada en el cuaderno: [Bank Customer Churn Dataset, Kaggle](https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset).
+## Herramientas y metodología
 
-### Revisión técnica
+Python, pandas, NumPy y Matplotlib, con pruebas `unittest` y cuadernos ejecutados mediante nbclient.
 
-- La celda 13 (numeración desde 1) contiene `ncols=` sin valor: impide ejecutar esa celda.
-- Se alternan `data` y `df` sin definir `df` en el cuaderno.
-- La selección de columnas binarias usa una tupla y un tabulador antes de `credit_card`; debería seleccionar una lista de nombres válidos.
-- Se eliminan `gender` y `country` antes de visualizaciones que las necesitan.
-- La correlación necesita seleccionar explícitamente variables numéricas en versiones actuales de pandas. La matriz de correlación de correlaciones tampoco equivale a la correlación original de las variables.
-- El original revisado contiene dos salidas con `KeyError`. El cuaderno aún no establece una conclusión reproducible sobre los grupos de mayor riesgo.
+1. Validar columnas, identificadores únicos, ausencia de nulos, valores binarios y dominios numéricos. Los errores detienen la ejecución en vez de modificar registros silenciosamente.
+2. Retirar `customer_id` tras verificar la unicidad. No mostrar ni exportar filas individuales.
+3. Calcular tasas por país, género, actividad, número de productos y grupos de edad (18–29, 30–39, 40–49, 50–59 y 60+).
+4. Presentar denominadores e intervalos de Wilson del 95 %. Suprimir grupos con menos de 30 observaciones.
+5. Calcular correlaciones de las variables numéricas originales, incluida la variable de abandono, sin correlacionar una matriz de correlaciones.
 
-### Próximo paso recomendado
+## Datos y procedencia
 
-Corregir la ejecución secuencial, conservar las variables necesarias para las gráficas y comparar tasas de abandono por grupo junto con sus tamaños de muestra. Las asociaciones exploratorias no demuestran causalidad.
+[Bank Customer Churn Dataset, publicado por Gaurav Topre en Kaggle](https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset). Descarga el archivo `Bank Customer Churn Prediction.csv` y colócalo en `data/`.
 
-## Estado de esta publicación
+Los resultados publicados se ejecutaron con copias públicas descargadas de las fuentes indicadas. No se ha verificado identidad byte a byte con los archivos del Drive del autor. Las huellas SHA-256 en [data/README.md](data/README.md) y `reports/metrics.json` identifican las entradas exactas. Los datasets se excluyen de Git; consulta las condiciones de cada fuente antes de reutilizarlos o redistribuirlos.
 
-Se conserva el código y el texto del cuaderno original. En la copia pública se retiraron las salidas guardadas, los contadores de ejecución y los metadatos de las celdas para no publicar identificadores ni datos financieros de clientes. El original se conserva localmente. La revisión del 9 de noviembre de 2026 fue estática: lectura del código, salidas y estructura. No se ejecutó el análisis con los datasets ni se corrigió silenciosamente el trabajo original. Los problemas anteriores deben resolverse antes de considerar reproducibles los resultados.
+| Campo | Uso |
+|---|---|
+| `customer_id` | Validación de unicidad; excluido del análisis |
+| `churn` | Indicador de abandono: 1 = abandono, 0 = permanencia |
+| `country`, `gender` | Segmentación categórica |
+| `age`, `tenure` | Edad y antigüedad declaradas en el dataset |
+| `products_number`, `credit_card`, `active_member` | Relación comercial; dos últimos indicadores binarios |
+| `credit_score`, `balance`, `estimated_salary` | Perfil numérico; no se publican registros individuales |
 
-## Cómo explorar el proyecto
+## Reproducir el proyecto
 
-1. Abra el enlace de Colab o el archivo `.ipynb` en GitHub para consultar el trabajo.
-2. Para trabajar localmente, cree un entorno virtual con `python -m venv .venv` y actívelo.
-3. Instale las dependencias con `python -m pip install -r requirements.txt`.
-4. Obtenga los datos desde su fuente autorizada. Ajuste las rutas `/content/drive/MyDrive/DATA_PRACTICA/` al directorio donde los haya guardado.
-5. En un entorno local, omita las celdas de montaje de Google Drive, si las hay.
-6. Resuelva los puntos de la revisión técnica y reinicie el kernel antes de ejecutar todas las celdas en orden.
+```powershell
+git clone https://github.com/hectortorres26/analisis-abandono-bancario.git
+cd analisis-abandono-bancario
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+# Coloca los archivos descritos en «Datos y procedencia» dentro de data/.
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m src.analysis
+.\.venv\Scripts\python.exe scripts/execute_notebook.py
+```
 
-`requirements.txt` enumera las librerías utilizadas; las versiones del entorno original no están registradas y no se ha validado una combinación exacta de versiones. Los datasets no se incluyen en este repositorio.
+En macOS/Linux utiliza `.venv/bin/python` en lugar de `.\.venv\Scripts\python.exe`.
+La ejecución validada utiliza Python 3.11.9; las versiones están fijadas en `requirements.txt`.
+`python -m src.analysis --help` permite cambiar rutas de entrada y salida.
+El último comando ejecuta el cuaderno en un kernel nuevo y guarda sus salidas; no requiere instalar la interfaz de Jupyter.
+Para explorarlo interactivamente, abre el archivo `.ipynb` en VS Code con soporte de Jupyter y selecciona el entorno `.venv`.
 
-## Autoría y procedencia
 
-Publicado a partir del cuaderno enlazado en el portafolio del autor. Las fuentes y licencias de los datos son independientes de la autoría del análisis. Esta publicación no añade una licencia de redistribución al código ni a los datasets.
+## Estructura
+
+| Ruta | Contenido |
+|---|---|
+| `analisis_bancario.ipynb` | Problema, metodología, ejecución y conclusiones |
+| `src/analysis.py` | Validación, análisis y generación de resultados |
+| `src/common.py` | Estilo visual, serialización y trazabilidad |
+| `tests/test_analysis.py` | Regresiones de los fallos técnicos corregidos |
+| `data/README.md` | Entradas requeridas y huellas SHA-256 |
+| `reports/` | Métricas JSON, tablas agregadas CSV y figuras PNG |
+| `scripts/execute_notebook.py` | Ejecución reproducible con kernel limpio |
+| `DESCRIPCION_PORTAFOLIO.md` | Texto profesional listo para el portafolio |
+
+## Alcance y limitaciones
+
+Los intervalos suponen observaciones independientes y no corrigen comparaciones múltiples. La muestra no acredita representatividad de un banco real. Las diferencias pueden depender de variables no observadas; país y edad no deben convertirse automáticamente en criterios de intervención. Las tablas públicas son agregadas, pero eso no constituye una garantía formal de anonimización. No se ha medido ahorro económico ni reducción real del abandono.
+
+## Historial y correcciones
+
+El [archivo de la versión inicial](https://github.com/hectortorres26/analisis-abandono-bancario/blob/f527704abd53c9d7a21cb0a651236eb891b827c8/analisis_bancario.ipynb) permanece en el historial.
+Los cambios se registran en commits separados para código, cuaderno/resultados y documentación, sin reescribir la versión inicial.
+Consulta [CHANGELOG.md](CHANGELOG.md) para relacionar los problemas originales con las correcciones.
+
+Referencia metodológica: [prevención de fuga de información en scikit-learn](https://scikit-learn.org/stable/common_pitfalls.html).
