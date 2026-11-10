@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Abandono bancario: diagnóstico por segmentos</title>
+</head>
+<body>
+<h2>
+<strong>Objetivo del proyecto</strong>
+</h2>
+<p>Identificar qué segmentos presentan mayor abandono bancario y convertir los hallazgos en hipótesis de retención. Analicé una muestra educativa de 10.000 clientes, con énfasis en la calidad de los datos y la comunicación de resultados.</p>
+<p>
+<br>
+</p>
+<h2>
+<strong>Herramientas y metodología</strong>
+</h2>
+<p>Trabajé con Python, pandas, NumPy y Matplotlib. Validé el esquema, la unicidad de los identificadores, los valores ausentes y los campos binarios. Después calculé tasas por país, edad, género, actividad y número de productos, con intervalos de Wilson del 95 % y denominadores visibles.</p>
+<p>
+<br>
+</p>
+<p>El flujo genera tablas agregadas y gráficos reproducibles. Los identificadores se retiran tras validar la unicidad y no se publican registros individuales. Los segmentos con menos de 30 observaciones se excluyen de los informes.</p>
+<p>
+<br>
+</p>
+<h2>
+<strong>Resultados principales</strong>
+</h2>
+<ul>
+<li>
+<strong>2.037 abandonos entre 10.000 clientes: tasa global del 20,37 %.</strong>
+</li>
+<li>Intervalo de confianza del 95 % para la tasa global: <strong>19,59–21,17 %</strong>.</li>
+<li>Alemania registró un 32,44 % de abandono, frente al 16,15 % de Francia y el 16,67 % de España.</li>
+<li>Los segmentos con tres o cuatro productos mostraron tasas elevadas, aunque con muestras menores: 266 y 60 clientes, respectivamente.</li>
+</ul>
+<p>
+<br>
+</p>
+<h2>
+<strong>Interpretación y alcance</strong>
+</h2>
+<p>Las diferencias permiten priorizar investigaciones sobre servicio, oferta comercial y composición de clientes. Son asociaciones descriptivas: no demuestran causas ni acreditan una reducción del abandono mediante una campaña. Los tamaños de muestra y la incertidumbre deben acompañar cualquier interpretación.</p>
+<p>
+<br>
+</p>
+<h2>
+<strong>Calidad y reproducibilidad</strong>
+</h2>
+<p>Corregí referencias inconsistentes a variables, problemas de selección de columnas y el cálculo de correlaciones. El repositorio incluye cinco pruebas técnicas, un cuaderno ejecutado, dependencias fijadas y trazabilidad de los datos. La ejecución utiliza una copia pública del dataset de Kaggle; no se ha comprobado su identidad byte a byte con los archivos originales de Drive.</p>
+<p>
+<br>
+</p>
+<h2>
+<strong>Código, resultados y documentación</strong>
+</h2>
+<ul>
+<li>
+<a href="https://github.com/hectortorres26/analisis-abandono-bancario">Repositorio completo en GitHub</a>
+</li>
+<li>
+<a href="https://github.com/hectortorres26/analisis-abandono-bancario/blob/main/analisis_bancario.ipynb">Cuaderno ejecutado con tablas y gráficos</a>
+</li>
+<li>
+<a href="https://github.com/hectortorres26/analisis-abandono-bancario/tree/main/reports">Informes y métricas verificadas</a>
+</li>
+<li>
+<a href="https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset">Fuente de datos: Bank Customer Churn Dataset</a>
+</li>
+</ul>
+<p>
+<br>
+</p>
+</body>
+</html>
